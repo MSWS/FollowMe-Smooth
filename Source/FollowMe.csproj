@@ -11,11 +11,12 @@
         <DebugType>portable</DebugType>
         <LangVersion>9</LangVersion>
         <OutputPath>..\Assemblies\</OutputPath>
-        <PostBuildEvent>mod update</PostBuildEvent>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Krafs.Rimworld.Ref" Version="1.3.3087" />
+        <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4523" />
         <PackageReference Include="Lib.Harmony" Version="2.1.1" ExcludeAssets="runtime" />
-        <ProjectReference Include="..\..\..\TOOLS\BetterKeybinding\BetterKeybinding.csproj" />
+        <Reference Include="BetterKeybinding">
+            <HintPath>Libs\BetterKeybinding.dll</HintPath>
+        </Reference>
     </ItemGroup>
 </Project>

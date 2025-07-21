@@ -1,6 +1,7 @@
 // Settings.cs
 // Copyright Karel Kroeze, -2020
 
+using System.Globalization;
 using BetterKeybinding;
 using UnityEngine;
 using Verse;
@@ -10,6 +11,7 @@ namespace FollowMe {
         public static  bool    showNotifications = true;
         public static  bool    playSounds        = true;
         public static  bool    edgeDetection     = true;
+        public static float    smoothness        = 0.2f;
         private static KeyBind _followMeKey;
 
         public static KeyBind FollowMeKey {
@@ -33,6 +35,7 @@ namespace FollowMe {
             Scribe_Values.Look(ref showNotifications, "showNotifications", true);
             Scribe_Values.Look(ref playSounds, "playSounds", true);
             Scribe_Values.Look(ref edgeDetection, "edgeDetection", true);
+            Scribe_Values.Look(ref smoothness, "smoothness", 0.2f);
             Scribe_Deep.Look(ref _followMeKey, "followMeKey");
             Scribe_Deep.Look(ref _cinematicCameraKey, "cinematicCameraKey");
         }
@@ -46,6 +49,10 @@ namespace FollowMe {
                                   "FollowMe.Sounds.Tooltip".Translate());
             list.CheckboxLabeled("FollowMe.EdgeDetection".Translate(), ref edgeDetection,
                                   "FollowMe.EdgeDetection.Tooltip".Translate());
+            smoothness = list.SliderLabeled("FollowMe.Smoothness".Translate(),
+                smoothness, 0, 0.999f, tooltip: "FollowMe.Smoothness.Tooltip".Translate());
+            var foo = smoothness.ToString(CultureInfo.CurrentCulture);
+            list.TextFieldNumeric(ref smoothness, ref foo, 0, 0.999f);
             list.Gap();
             list.Label("Fluffy.FollowMe.KeyBinds".Translate());
             FollowMeKey.Draw(list.GetRect(30));

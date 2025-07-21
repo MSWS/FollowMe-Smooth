@@ -226,7 +226,10 @@ namespace FollowMe {
                     }
                 }
 
-                Find.CameraDriver.JumpToCurrentMapLoc(thing.DrawPos); // <---
+                var current = CameraRootPosition;
+                var target = thing.DrawPos;
+                var dest = Vector3.Slerp(current, target, 1 - Settings.smoothness);
+                Find.CameraDriver.SetRootPosAndSize(dest, Find.CameraDriver.RootSize);
             } else {
                 StopFollow("invalid thing position");
             }

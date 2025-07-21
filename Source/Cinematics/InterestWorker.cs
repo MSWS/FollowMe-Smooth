@@ -70,7 +70,7 @@ namespace FollowMe {
                 interest *= 3f;
             }
 
-            interest *= pawn.RaceProps.wildness;
+            interest *= pawn.RaceProps.petness;
 
             float? commonality = pawn.RaceProps.wildBiomes?.Find( br => br.biome == Find.CurrentMap.Biome )?.commonality;
             if (commonality.HasValue) {
